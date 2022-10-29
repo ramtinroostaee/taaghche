@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "Modules/*": ["src/Modules/*"],
+      "reusable/*": ["src/reusable/*"]
+    }
+  }
+}
