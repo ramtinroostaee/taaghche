@@ -1,21 +1,31 @@
-import {useEffect} from "react";
-import {hideLoader, showLoader} from "reusable/Loader/LoaderSlice";
-import {useDispatch} from "react-redux";
+import {useEffect, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {GetBooks} from "Modules/books/store/slice";
+import {createSelector} from "@reduxjs/toolkit";
+import reducer from "Modules/books/store";
+import withReducer from "reusable/redux/withReducer";
+import BookCards from "Modules/books/components/BookCards";
+import BookCard from "Modules/books/components/BookCard";
+
+const selectMaker = (data) =>
+  createSelector(
+    ({books}) => books?.slice[data],
+    (data) => data
+  );
 
 const Books = () => {
+  const books = useSelector(selectMaker("bookList"))?.books ?? [];
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(showLoader());
-    console.log("hi")
-    setTimeout(() => dispatch(hideLoader()), 3000);
+    dispatch(GetBooks());
   }, []);
 
   return (
-    <div>
-      Hi
+    <div className="w-full flex flex-col justify-center mt-16">
+      {books?.map((e) => <BookCard key={e?.id} {...e} />)}
     </div>
   )
 };
 
-export default Books;
+export default withReducer("books", reducer)(Books);
