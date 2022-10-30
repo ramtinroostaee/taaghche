@@ -2,13 +2,12 @@ import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
 import axios from "axios";
 import {toast} from "react-toastify";
 import {apiCallTry} from "reusable/axios";
+import _ from "lodash";
 
 export const GetBooks = createAsyncThunk(
   "books/Get",
   async (_, {getState}) => {
-    const {sort, perPage, page, filters} = getState().books.slice;
-
-    const url = `/api/wayBill?perPage=${perPage}&sort=${sort}&page=${page}${filters}`;
+    const url = "/v2/everything?filters=%7B%22list%22:%5B%7B%22type%22:3,%22value%22:164%7D,%7B%22type%22:21,%22value%22:0%7D,%7B%22type%22:50,%22value%22:0%7D%5D%7D&offset=0-0-16-16&order=1";
 
     const response = await apiCallTry(() => axios.get(url));
     return response.data;
@@ -21,7 +20,7 @@ const initialState = {
   sort: 25,
   page: 1,
   filters: "",
-  data: [],
+  bookList: [],
 };
 
 const books = createSlice({
