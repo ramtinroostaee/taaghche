@@ -22,7 +22,7 @@ const Books = () => {
   }, []);
 
   return (
-    <div className="w-full flex flex-col justify-center mt-16">
+    <div className="w-full flex flex-col justify-center mt-16 lg:pr-32">
       {books?.map((e) => <BookCard key={e?.id} {...e} />)}
     </div>
   )
