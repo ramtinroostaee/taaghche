@@ -20,7 +20,7 @@ const initialState = {
   sort: 25,
   page: 1,
   filters: "",
-  bookList: [],
+  bookList: {books: []},
 };
 
 const books = createSlice({
