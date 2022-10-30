@@ -1,15 +1,15 @@
-import React, {useCallback, useState} from "react";
+import React, {forwardRef, useCallback, useState} from "react";
 import {Paper, Rating} from "@mui/material";
 import BookDetail from "Modules/books/components/BookDetail";
 
-const BookCard = (props) => {
+const BookCard = forwardRef((props, ref) => {
   const {coverUri, authors, title, price, rating} = props;
   const [modalOpen, setModalOpen] = useState(false);
   const handleClose = useCallback(() => setModalOpen(false), []);
 
   return (
     <>
-      <Paper onClick={() => setModalOpen(true)} elevation={5}
+      <Paper ref={ref} onClick={() => setModalOpen(true)} elevation={5}
              className="flex flex-col md:flex-row font-sans w-full my-4 cursor-pointer">
         <div className="flex justify-center items-center w-48 relative">
           <img src={coverUri} alt="book cover"
@@ -43,6 +43,6 @@ const BookCard = (props) => {
 
     </>
   );
-};
+});
 
 export default BookCard;
