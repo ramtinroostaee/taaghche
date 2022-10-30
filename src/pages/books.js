@@ -7,7 +7,6 @@ import withReducer from "reusable/redux/withReducer";
 import BookCard from "Modules/books/components/BookCard";
 import {Button, Paper, Typography} from "@mui/material";
 import {filters, sorts} from "Modules/books/arrays/sorts";
-import {useOnScreen} from "reusable/hooks/useOnScreen";
 
 const selectMaker = (data) =>
   createSelector(
@@ -30,7 +29,12 @@ const Books = () => {
   }, []);
 
   useEffect(() => {
-    dispatch(GetBooks());
+    const oldBooks = JSON.parse(localStorage.getItem("booksInitials"));
+    if (oldBooks) {
+      dispatch(setPageConfig(oldBooks));
+    } else {
+      dispatch(GetBooks());
+    }
   }, []);
 
   useEffect(() => {

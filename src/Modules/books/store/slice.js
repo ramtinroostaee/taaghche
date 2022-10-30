@@ -50,14 +50,19 @@ const books = createSlice({
     clearStore: () => _.cloneDeep(initialState),
   },
   extraReducers: {
-    [GetBooks.fulfilled]: (state, action) => ({
-      ...state,
-      ...action.payload,
-      bookList: {
-        ...state.bookList, ...action.payload.bookList,
-        books: [...state.bookList.books, ...action.payload.bookList.books]
-      }
-    }),
+    [GetBooks.fulfilled]: (state, action) => {
+      const the = ({
+        ...state,
+        ...action.payload,
+        bookList: {
+          ...state.bookList, ...action.payload.bookList,
+          books: [...state.bookList.books, ...action.payload.bookList.books]
+        }
+      });
+      localStorage.setItem("booksInitials", JSON.stringify(the));
+
+      return the;
+    },
   }
 });
 
