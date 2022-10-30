@@ -69,7 +69,7 @@ const BookDetail = ({
                             strokeLinecap="round"
                             strokeLinejoin="round"/>
                     </svg>
-                    <span>{rating.toFixed(2)}</span>
+                    <span>{rating?.toFixed(2) ?? ""}</span>
                   </dd>
                   <dt className="sr-only">Location</dt>
                   <dd className="flex items-center">
