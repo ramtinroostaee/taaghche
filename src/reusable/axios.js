@@ -16,7 +16,9 @@ export const apiCallTry = async (fu) => {
   try {
     return await fu();
   } catch (error) {
-    if (error.response) {
+    if (error?.message) {
+      toast.error(error.message);
+    } else if (error.response) {
       // console.log(error.response.data);
       // console.log(error.response.status);
       // console.log(error.response.headers);
