@@ -10,7 +10,7 @@ const BookCard = (props) => {
   return (
     <>
       <Paper onClick={() => setModalOpen(true)} elevation={5}
-             className="flex flex-col md:flex-row font-sans max-w-[1000px] my-4 mx-16 cursor-pointer">
+             className="flex flex-col md:flex-row font-sans w-full my-4 cursor-pointer">
         <div className="flex justify-center items-center w-48 relative">
           <img src={coverUri} alt="book cover"
                className="w-36 h-36 md:w-48 md:h-auto md:rounded-none rounded-full mx-auto"
